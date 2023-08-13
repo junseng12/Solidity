@@ -76,11 +76,13 @@ contract status is PompayToken("AJOU", "AJ"){
 
     //<--   IPFS 해시 저장 부분     -->//
     // IPFS 해시를 이더리움 블록체인에 저장하는 컨트랙트의 인스턴스 생성
-    IPFSStorage ipfsStorage = IPFSStorage(0xd9145CCE52D386f254917e481eB44e9943F39138);
+    // IPFSStorage 컨트랙트 주소 : 0xDA0bab807633f07f013f94DD0E6A4F96F8742B53
+    IPFSStorage ipfsStorage = IPFSStorage(0xDA0bab807633f07f013f94DD0E6A4F96F8742B53);
 
     //Student 정보를 해시하여 IPFS에 올리는 함수
     function uploadStudentInfoToIPFS(address account) public {
-        string memory ipfsHash = ipfsStorage.generateIPFSHash(getInfoByWallet[account].name, getInfoByWallet[account].studentID, getInfoByWallet[account].major, getInfoByWallet[account].gpa, getInfoByWallet[account].company, getInfoByWallet[account].balance);
+        Student memory student = getInfoByWallet[account];
+        string memory ipfsHash = ipfsStorage.generateIPFSHash(student.name, student.studentID, student.major, student.gpa, student.company, student.balance);
         // string memory ipfsHash = ipfsStorage.generateIPFSHash(student);
         // IPFS 해시 저장 함수 호출
         ipfsStorage.saveIPFSHash(ipfsHash);
@@ -88,13 +90,16 @@ contract status is PompayToken("AJOU", "AJ"){
     }
 
     //IPFS 해시 값으로 Student 정보를 가져와 balance값을 보여주는 함수
-    function getBalanceOfStudent(address account, string memory /*ipfsHash*/) public view returns (uint256) {
+    function getBalanceOfStudent(address account /*string memory /*ipfsHash*/) public view returns (uint256) {
         // // IPFSStorage 컨트랙트의 인스턴스를 생성
         // IPFSStorage ipfsStorage = IPFSStorage(0xd9145CCE52D386f254917e481eB44e9943F39138);
-        
+        Student memory student = getInfoByWallet[account];
+
         // IPFS 해시로부터 학생 ipfs 정보 획득 및 검증
         string memory studentipfs = ipfsStorage.getIPFSHash(account);
-        require(keccak256(abi.encodePacked(studentipfs)) == keccak256(abi.encodePacked(ipfsStorage.generateIPFSHash(getInfoByWallet[account]))), "IPFS InCorrect");
+        require(keccak256(abi.encodePacked(studentipfs)) == keccak256(abi.encodePacked(ipfsStorage.generateIPFSHash(student.name, 
+        student.studentID, student.major, student.gpa, 
+        student.company, student.balance))), "IPFS InCorrect");
         
         // balance 값 반환 - ipfs 는 그저 검증 용도 balance 반환에 큰 의미 X
         uint256 balance = getInfoByWallet[account].balance;

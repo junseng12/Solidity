@@ -22,8 +22,27 @@ contract IPFSStorage {
     // }
     mapping(address => string) public ipfsHashes; // 지갑 주소를 키로 사용하여 IPFS 해시를 저장
     
-    // IPFS 해시를 생성하는 함수 - string화 부분
-    function toString(uint256 value) public pure returns (string memory) {
+    // IPFS 해시를 생성하는 함수 - string화 부분 1
+    // function toString(uint256 value) public pure returns (string memory) {
+    //     if (value == 0) {
+    //         return "0";
+    //     }
+    //     uint256 temp = value;
+    //     uint256 digits;
+    //     while (temp != 0) {
+    //         digits++;
+    //         temp /= 10;
+    //     }
+    //     bytes memory buffer = new bytes(digits);
+    //     while (value != 0) {
+    //         digits -= 1;
+    //         buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+    //         value /= 10;
+    //     }
+    //     return string(buffer);
+    // }
+
+    function uintToString(uint256 value) public pure returns (string memory) {
         if (value == 0) {
             return "0";
         }
@@ -41,23 +60,55 @@ contract IPFSStorage {
         }
         return string(buffer);
     }
+
+    // 소수점이 있는 숫자를 문자열로 변환하는 함수
+    function decimalToString(uint256 value, uint256 decimals) internal pure returns (string memory) {
+        if (value == 0) {
+            return "0";
+        }
+
+        uint256 wholePart = value / (10 ** decimals);
+        uint256 fractionalPart = value % (10 ** decimals);
+
+        string memory wholePartStr = uintToString(wholePart);
+
+        // Convert fractional part to string with leading zeros
+        string memory fractionalPartStr = "";
+        uint256 fractionalPartLength = 0;
+        uint256 temp = fractionalPart;
+        while (temp > 0) {
+            temp /= 10;
+            fractionalPartLength++;
+        }
+        uint256 leadingZeros = decimals - fractionalPartLength;
+        for (uint256 i = 0; i < leadingZeros; i++) {
+            fractionalPartStr = string(abi.encodePacked(fractionalPartStr, "0"));
+        }
+        fractionalPartStr = string(abi.encodePacked(fractionalPartStr, uintToString(fractionalPart)));
+
+        // Combine whole and fractional parts
+        return string(abi.encodePacked(wholePartStr, ".", fractionalPartStr));
+    }
+
     // IPFS 해시를 생성하는 함수 - Main
-    function generateIPFSHash(string memory name,
-        string memory studentID,
+    function generateIPFSHash(
+        string memory name,
+        uint256 studentID,
         string memory major,
         uint256 gpa,
         string memory company,
-        uint256 balance) public pure returns (string memory) {
+        uint256 balance
+    ) public pure returns (string memory) {
         return string(abi.encodePacked(
             name,
-            studentID,
+            uintToString(studentID),
             major,
-            toString(gpa),
+            decimalToString(gpa, 2), // Convert gpa to string
             company,
-            toString(balance)
+            uintToString(balance)
         ));
     }
-
+                
     // IPFS 해시를 저장하는 함수
     function saveIPFSHash(/*address account*/ string memory ipfsHash) public returns (bool) {
         // 다른 Client가 호출할 때마다, 다른 msg.sender로 잘 적용됨
