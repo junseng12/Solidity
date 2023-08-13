@@ -1,0 +1,106 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "getIPFSHash",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ipfsHashes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "ipfsHash",
+						"type": "string"
+					}
+				],
+				"name": "saveIPFSHash",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"custom:dev-run-script": ".deps/contracts/IPFSStorage.sol",
+			"details": "IPFSHash Saving",
+			"kind": "dev",
+			"methods": {},
+			"title": "IPFSStorage",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/contracts/IPFSStorage.sol": "IPFSStorage"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/contracts/IPFSStorage.sol": {
+			"keccak256": "0xb32bed7cb0f8e48cfd1aa69060aae4d9c10700489077ff603d58ab89febfd6da",
+			"license": "GPL-30",
+			"urls": [
+				"bzz-raw://dfc6d75db8431c62c01618a6224ff69dec43ad1e9704120c1ac8250016e910aa",
+				"dweb:/ipfs/QmaD5mqw9AqUh65kYZR68izZmuVSmkZjRDpMTLS5JW3vYc"
+			]
+		}
+	},
+	"version": 1
+}
