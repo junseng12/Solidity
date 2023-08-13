@@ -20,11 +20,10 @@ contract IPFSStorage {
         string company;
         uint256 balance;
     }
-
     mapping(address => string) public ipfsHashes; // 지갑 주소를 키로 사용하여 IPFS 해시를 저장
     
     // IPFS 해시를 생성하는 함수 - string화 부분
-    function toString(uint256 value) internal pure returns (string memory) {
+    function toString(uint256 value) public pure returns (string memory) {
         if (value == 0) {
             return "0";
         }
@@ -43,7 +42,7 @@ contract IPFSStorage {
         return string(buffer);
     }
     // IPFS 해시를 생성하는 함수 - Main
-    function generateIPFSHash(Student memory student) internal pure returns (string memory) {
+    function generateIPFSHash(Student memory student) public pure returns (string memory) {
         return string(abi.encodePacked(
             student.name,
             toString(student.studentID),
@@ -53,10 +52,6 @@ contract IPFSStorage {
             toString(student.balance)
         ));
     }
-    // function generateIPFSHash(Student memory student) internal pure returns (string memory) {
-    //     // return string(abi.encodePacked(name, ",", toString(StudentID), ",", major, ",", toString(gpa), ",", company, ",", balance));
-    //     return string(abi.encodePacked(toString(student)));
-    // }
 
     // IPFS 해시를 저장하는 함수
     function saveIPFSHash(/*address account*/ string memory ipfsHash) public returns (bool) {
