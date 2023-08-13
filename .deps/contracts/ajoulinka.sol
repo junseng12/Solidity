@@ -79,9 +79,9 @@ contract status is PompayToken("AJOU", "AJ"){
     IPFSStorage ipfsStorage = IPFSStorage(0xd9145CCE52D386f254917e481eB44e9943F39138);
 
     //Student 정보를 해시하여 IPFS에 올리는 함수
-    function uploadStudentInfoToIPFS(Student memory student) public {
-        //string memory ipfsHash = generateIPFSHash(name, StudentID, major, gpa, company);
-        string memory ipfsHash = ipfsStorage.generateIPFSHash(student);
+    function uploadStudentInfoToIPFS(address account) public {
+        string memory ipfsHash = ipfsStorage.generateIPFSHash(getInfoByWallet[account].name, getInfoByWallet[account].studentID, getInfoByWallet[account].major, getInfoByWallet[account].gpa, getInfoByWallet[account].company, getInfoByWallet[account].balance);
+        // string memory ipfsHash = ipfsStorage.generateIPFSHash(student);
         // IPFS 해시 저장 함수 호출
         ipfsStorage.saveIPFSHash(ipfsHash);
         // getInfoByWallet[msg.sender].ipfsHash = ipfsHash;

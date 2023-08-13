@@ -11,15 +11,15 @@ pragma solidity ^0.8.0;
 //디버그 - 발행자 account : 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
 // 다른 Client 1 : 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2  
 contract IPFSStorage {
-
-    struct Student {
-        string name;
-        uint256 studentID;
-        string major;
-        uint256 gpa;
-        string company;
-        uint256 balance;
-    }
+    // 여기에도 Student 구조체 정의하여 사용하니 ajoulinka 랑 구조체 충돌 발생
+    // struct Student {
+    //     string name;
+    //     uint256 studentID;
+    //     string major;
+    //     uint256 gpa;
+    //     string company;
+    //     uint256 balance;
+    // }
     mapping(address => string) public ipfsHashes; // 지갑 주소를 키로 사용하여 IPFS 해시를 저장
     
     // IPFS 해시를 생성하는 함수 - string화 부분
@@ -42,14 +42,19 @@ contract IPFSStorage {
         return string(buffer);
     }
     // IPFS 해시를 생성하는 함수 - Main
-    function generateIPFSHash(Student memory student) public pure returns (string memory) {
+    function generateIPFSHash(string memory name,
+        string memory studentID,
+        string memory major,
+        uint256 gpa,
+        string memory company,
+        uint256 balance) public pure returns (string memory) {
         return string(abi.encodePacked(
-            student.name,
-            toString(student.studentID),
-            student.major,
-            toString(student.gpa),
-            student.company,
-            toString(student.balance)
+            name,
+            studentID,
+            major,
+            toString(gpa),
+            company,
+            toString(balance)
         ));
     }
 
