@@ -1,10 +1,78 @@
 {
 	"compiler": {
-		"version": "0.8.21+commit.d9974bed"
+		"version": "0.8.20+commit.a1b79de6"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "decimals",
+						"type": "uint256"
+					}
+				],
+				"name": "decimalToString",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "studentID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "major",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "gpa",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "company",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"name": "generateIPFSHash",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
 			{
 				"inputs": [
 					{
@@ -61,6 +129,25 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "uintToString",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -94,11 +181,11 @@
 	},
 	"sources": {
 		".deps/contracts/IPFSStorage.sol": {
-			"keccak256": "0xb32bed7cb0f8e48cfd1aa69060aae4d9c10700489077ff603d58ab89febfd6da",
+			"keccak256": "0x3d1b26dc2fae967a87acd7d562f0084dfbffc17884a560bbf74d35d22b9a6a21",
 			"license": "GPL-30",
 			"urls": [
-				"bzz-raw://dfc6d75db8431c62c01618a6224ff69dec43ad1e9704120c1ac8250016e910aa",
-				"dweb:/ipfs/QmaD5mqw9AqUh65kYZR68izZmuVSmkZjRDpMTLS5JW3vYc"
+				"bzz-raw://686811a96c9bad4ff758937e9f25ade33604a162c0cb43eebbef7801fa58b510",
+				"dweb:/ipfs/QmXxiC8uc31wUocH9ekhrJam2JsmGQcVgUqjv84sArQzyj"
 			]
 		}
 	},

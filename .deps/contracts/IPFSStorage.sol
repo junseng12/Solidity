@@ -8,6 +8,7 @@ pragma solidity ^0.8.0;
    * @custom:dev-run-script .deps/contracts/IPFSStorage.sol
    */
 
+
 //디버그 - 발행자 account : 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
 // 다른 Client 1 : 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2  
 contract IPFSStorage {
@@ -22,26 +23,7 @@ contract IPFSStorage {
     // }
     mapping(address => string) public ipfsHashes; // 지갑 주소를 키로 사용하여 IPFS 해시를 저장
     
-    // IPFS 해시를 생성하는 함수 - string화 부분 1
-    // function toString(uint256 value) public pure returns (string memory) {
-    //     if (value == 0) {
-    //         return "0";
-    //     }
-    //     uint256 temp = value;
-    //     uint256 digits;
-    //     while (temp != 0) {
-    //         digits++;
-    //         temp /= 10;
-    //     }
-    //     bytes memory buffer = new bytes(digits);
-    //     while (value != 0) {
-    //         digits -= 1;
-    //         buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
-    //         value /= 10;
-    //     }
-    //     return string(buffer);
-    // }
-
+    // IPFS 해시를 생성하는 함수 - string화 부분
     function uintToString(uint256 value) public pure returns (string memory) {
         if (value == 0) {
             return "0";
@@ -62,32 +44,26 @@ contract IPFSStorage {
     }
 
     // 소수점이 있는 숫자를 문자열로 변환하는 함수
-    function decimalToString(uint256 value, uint256 decimals) internal pure returns (string memory) {
+    function decimalToString(uint256 value, uint256 decimals) public pure returns (string memory) {
         if (value == 0) {
             return "0";
         }
 
-        uint256 wholePart = value / (10 ** decimals);
-        uint256 fractionalPart = value % (10 ** decimals);
+        uint256 integerValue = value / (10**decimals);
+        uint256 fractionalValue = value % (10**decimals);
 
-        string memory wholePartStr = uintToString(wholePart);
+        string memory integerValueString = uintToString(integerValue);
+        string memory fractionalValueString = uintToString(fractionalValue);
 
-        // Convert fractional part to string with leading zeros
-        string memory fractionalPartStr = "";
-        uint256 fractionalPartLength = 0;
-        uint256 temp = fractionalPart;
-        while (temp > 0) {
-            temp /= 10;
-            fractionalPartLength++;
+        string memory result;
+
+        if (fractionalValue > 0) {
+            result = string(abi.encodePacked(integerValueString, ".", fractionalValueString));
+        } else {
+            result = integerValueString;
         }
-        uint256 leadingZeros = decimals - fractionalPartLength;
-        for (uint256 i = 0; i < leadingZeros; i++) {
-            fractionalPartStr = string(abi.encodePacked(fractionalPartStr, "0"));
-        }
-        fractionalPartStr = string(abi.encodePacked(fractionalPartStr, uintToString(fractionalPart)));
 
-        // Combine whole and fractional parts
-        return string(abi.encodePacked(wholePartStr, ".", fractionalPartStr));
+        return result;
     }
 
     // IPFS 해시를 생성하는 함수 - Main
@@ -99,11 +75,13 @@ contract IPFSStorage {
         string memory company,
         uint256 balance
     ) public pure returns (string memory) {
+        string memory gpaString = decimalToString(gpa, 2); // 예시로 소수점 둘째 자리까지 표현
+
         return string(abi.encodePacked(
             name,
             uintToString(studentID),
             major,
-            decimalToString(gpa, 2), // Convert gpa to string
+            gpaString, // Convert gpa to string
             company,
             uintToString(balance)
         ));

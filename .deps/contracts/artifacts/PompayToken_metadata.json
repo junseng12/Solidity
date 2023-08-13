@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.21+commit.d9974bed"
+		"version": "0.8.20+commit.a1b79de6"
 	},
 	"language": "Solidity",
 	"output": {
@@ -544,11 +544,11 @@
 	},
 	"sources": {
 		".deps/contracts/IPFSStorage.sol": {
-			"keccak256": "0xb4900ea488a6c1a2f0c8792fc189320f572ee05817feeee4550799ccf9fd74f2",
+			"keccak256": "0x364416aedb150011e1a0ef285a5784107edd99e1be823503d5e073fa9cef0dd4",
 			"license": "GPL-30",
 			"urls": [
-				"bzz-raw://59868968bbc14794ea629650615ba9848b8bcca39799e43696c2c4721f669faf",
-				"dweb:/ipfs/QmRr6YVaSXUwKqx16J5tyQJ5Xb8h2Vr5hQi7N3BpWmZkBj"
+				"bzz-raw://8ee4b23154c24c5d165f0183f7195048111310af573896df6f2645f85d52a655",
+				"dweb:/ipfs/QmeWR9sDAVjrqotpvyWD4YxcsjhWbQ7fY7ojMGbsjnU3UH"
 			]
 		},
 		".deps/contracts/ajoulinka.sol": {
