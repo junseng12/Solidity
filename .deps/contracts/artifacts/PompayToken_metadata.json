@@ -544,19 +544,27 @@
 	},
 	"sources": {
 		".deps/contracts/IPFSStorage.sol": {
-			"keccak256": "0x364416aedb150011e1a0ef285a5784107edd99e1be823503d5e073fa9cef0dd4",
+			"keccak256": "0x2f8037209d63226b2d3bda264434eb577d8ec0612380199a7b3e4b487a30eb03",
 			"license": "GPL-30",
 			"urls": [
-				"bzz-raw://8ee4b23154c24c5d165f0183f7195048111310af573896df6f2645f85d52a655",
-				"dweb:/ipfs/QmeWR9sDAVjrqotpvyWD4YxcsjhWbQ7fY7ojMGbsjnU3UH"
+				"bzz-raw://1cdf94f5c4a3f1ede408b33179a63e45b2e994640514a579aa83434214cafb6a",
+				"dweb:/ipfs/QmTPFHPYSUR9Bzn8ZDAZVYsQbiVTnKNgZdMrWNp5TEyoku"
 			]
 		},
 		".deps/contracts/ajoulinka.sol": {
-			"keccak256": "0x2e0c9bf64bc7cc30079deeb06632a380e6efbbc1d64b0e2625e6c82f95558819",
+			"keccak256": "0xf2c52612bdcfa1897c2d7272409e77042dbd3bc96c5133eac89883e1fbe2f394",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://525ad20c2145662d59400fa13b46e88eed321a8930c7294ac46af60d77b66c8e",
-				"dweb:/ipfs/QmZEpG9LN33QKfsQYb3k4rHaAUmUx4QtRuL3ohvFJPepzr"
+				"bzz-raw://94371283c4d1e7831175e11e73c271564f9a0042b238024557f801e810841ba7",
+				"dweb:/ipfs/QmZ1DkzF1UUCqMKSNPo9gkT8CccMLDkcKkCArNQwdTGrCo"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
+			"keccak256": "0x58b21219689909c4f8339af00813760337f7e2e7f169a97fe49e2896dcfb3b9a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ef8e012e946dec20e59f2d4446f4b44bb098f3fa8bac103b1b5112fff777447b",
+				"dweb:/ipfs/QmVTooKWcLkJ9W68yNX4MgdrbAKiAXwuRN9A7f4NkdcdtQ"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/interfaces/draft-IERC6093.sol": {

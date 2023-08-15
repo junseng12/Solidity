@@ -42,7 +42,7 @@ contract IPFSStorage {
         }
         return string(buffer);
     }
-
+    
     // 소수점이 있는 숫자를 문자열로 변환하는 함수
     function decimalToString(uint256 value, uint256 decimals) public pure returns (string memory) {
         if (value == 0) {
@@ -62,11 +62,11 @@ contract IPFSStorage {
         } else {
             result = integerValueString;
         }
-
         return result;
     }
 
     // IPFS 해시를 생성하는 함수 - Main
+    // gpa 입력할 때 4.15는 415, 3.64는 364 형태로 입력해야 함
     function generateIPFSHash(
         string memory name,
         uint256 studentID,
@@ -88,10 +88,10 @@ contract IPFSStorage {
     }
                 
     // IPFS 해시를 저장하는 함수
-    function saveIPFSHash(/*address account*/ string memory ipfsHash) public returns (bool) {
-        // 다른 Client가 호출할 때마다, 다른 msg.sender로 잘 적용됨
-        ipfsHashes[msg.sender] = ipfsHash;
-        //ipfsHashes[account] = ipfsHash;
+    function saveIPFSHash(address account, string memory ipfsHash) public returns (bool) {
+        // 다른 Client가 호출할 때마다, 다른 msg.sender로 잘 적용되나, transfer를 통해 다른 계정 balance Update 시 해당 계정에 적용하도록 하기 위해.
+        // ipfsHashes[msg.sender] = ipfsHash;
+        ipfsHashes[account] = ipfsHash;
         return true;
     }
 
