@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.20+commit.a1b79de6"
 	},
 	"language": "Solidity",
 	"output": {
@@ -173,7 +173,7 @@
 		"compilationTarget": {
 			".deps/contracts/IPFSStorage.sol": "IPFSStorage"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -186,11 +186,11 @@
 	},
 	"sources": {
 		".deps/contracts/IPFSStorage.sol": {
-			"keccak256": "0x2f8037209d63226b2d3bda264434eb577d8ec0612380199a7b3e4b487a30eb03",
+			"keccak256": "0x65ae03445eeda5f5e20252b7063d2c94bd7d4504abe95a422b0a6e5c82001f6e",
 			"license": "GPL-30",
 			"urls": [
-				"bzz-raw://1cdf94f5c4a3f1ede408b33179a63e45b2e994640514a579aa83434214cafb6a",
-				"dweb:/ipfs/QmTPFHPYSUR9Bzn8ZDAZVYsQbiVTnKNgZdMrWNp5TEyoku"
+				"bzz-raw://dd34d103fb17cafeb2f7390b585136ccc6686583898421ee1298a963660fd6bb",
+				"dweb:/ipfs/QmTCJejEJxX9V1PwxGBmRHf9RHJAtsS9J2TejYkPzC3rUP"
 			]
 		}
 	},

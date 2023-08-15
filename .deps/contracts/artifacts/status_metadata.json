@@ -17,113 +17,6 @@
 				"type": "constructor"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "spender",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "currentAllowance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "requestedDecrease",
-						"type": "uint256"
-					}
-				],
-				"name": "ERC20FailedDecreaseAllowance",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "spender",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "allowance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "needed",
-						"type": "uint256"
-					}
-				],
-				"name": "ERC20InsufficientAllowance",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "sender",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "balance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "needed",
-						"type": "uint256"
-					}
-				],
-				"name": "ERC20InsufficientBalance",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "approver",
-						"type": "address"
-					}
-				],
-				"name": "ERC20InvalidApprover",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "receiver",
-						"type": "address"
-					}
-				],
-				"name": "ERC20InvalidReceiver",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "sender",
-						"type": "address"
-					}
-				],
-				"name": "ERC20InvalidSender",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "spender",
-						"type": "address"
-					}
-				],
-				"name": "ERC20InvalidSpender",
-				"type": "error"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -280,7 +173,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "value",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
@@ -404,7 +297,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "requestedDecrease",
+						"name": "subtractedValue",
 						"type": "uint256"
 					}
 				],
@@ -690,7 +583,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "value",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
@@ -720,65 +613,6 @@
 			}
 		],
 		"devdoc": {
-			"errors": {
-				"ERC20FailedDecreaseAllowance(address,uint256,uint256)": [
-					{
-						"details": "Indicates a failed `decreaseAllowance` request."
-					}
-				],
-				"ERC20InsufficientAllowance(address,uint256,uint256)": [
-					{
-						"details": "Indicates a failure with the `spender`’s `allowance`. Used in transfers.",
-						"params": {
-							"allowance": "Amount of tokens a `spender` is allowed to operate with.",
-							"needed": "Minimum amount required to perform a transfer.",
-							"spender": "Address that may be allowed to operate on tokens without being their owner."
-						}
-					}
-				],
-				"ERC20InsufficientBalance(address,uint256,uint256)": [
-					{
-						"details": "Indicates an error related to the current `balance` of a `sender`. Used in transfers.",
-						"params": {
-							"balance": "Current balance for the interacting account.",
-							"needed": "Minimum amount required to perform a transfer.",
-							"sender": "Address whose tokens are being transferred."
-						}
-					}
-				],
-				"ERC20InvalidApprover(address)": [
-					{
-						"details": "Indicates a failure with the `approver` of a token to be approved. Used in approvals.",
-						"params": {
-							"approver": "Address initiating an approval operation."
-						}
-					}
-				],
-				"ERC20InvalidReceiver(address)": [
-					{
-						"details": "Indicates a failure with the token `receiver`. Used in transfers.",
-						"params": {
-							"receiver": "Address to which tokens are being transferred."
-						}
-					}
-				],
-				"ERC20InvalidSender(address)": [
-					{
-						"details": "Indicates a failure with the token `sender`. Used in transfers.",
-						"params": {
-							"sender": "Address whose tokens are being transferred."
-						}
-					}
-				],
-				"ERC20InvalidSpender(address)": [
-					{
-						"details": "Indicates a failure with the `spender` to be approved. Used in approvals.",
-						"params": {
-							"spender": "Address that may be allowed to operate on tokens without being their owner."
-						}
-					}
-				]
-			},
 			"events": {
 				"Approval(address,address,uint256)": {
 					"details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
@@ -793,7 +627,7 @@
 					"details": "See {IERC20-allowance}."
 				},
 				"approve(address,uint256)": {
-					"details": "See {IERC20-approve}. NOTE: If `value` is the maximum `uint256`, the allowance is not updated on `transferFrom`. This is semantically equivalent to an infinite approval. Requirements: - `spender` cannot be the zero address."
+					"details": "See {IERC20-approve}. NOTE: If `amount` is the maximum `uint256`, the allowance is not updated on `transferFrom`. This is semantically equivalent to an infinite approval. Requirements: - `spender` cannot be the zero address."
 				},
 				"balanceOf(address)": {
 					"details": "See {IERC20-balanceOf}."
@@ -802,7 +636,7 @@
 					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the default value returned by this function, unless it's overridden. NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
 				},
 				"decreaseAllowance(address,uint256)": {
-					"details": "Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `requestedDecrease`. NOTE: Although this function is designed to avoid double spending with {approval}, it can still be frontrunned, preventing any attempt of allowance reduction."
+					"details": "Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`."
 				},
 				"increaseAllowance(address,uint256)": {
 					"details": "Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address."
@@ -816,8 +650,11 @@
 				"totalSupply()": {
 					"details": "See {IERC20-totalSupply}."
 				},
+				"transfer(address,uint256)": {
+					"details": "See {IERC20-transfer}. Requirements: - `to` cannot be the zero address. - the caller must have a balance of at least `amount`."
+				},
 				"transferFrom(address,address,uint256)": {
-					"details": "See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. NOTE: Does not update the allowance if the current allowance is the maximum `uint256`. Requirements: - `from` and `to` cannot be the zero address. - `from` must have a balance of at least `value`. - the caller must have allowance for ``from``'s tokens of at least `value`."
+					"details": "See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. NOTE: Does not update the allowance if the current allowance is the maximum `uint256`. Requirements: - `from` and `to` cannot be the zero address. - `from` must have a balance of at least `amount`. - the caller must have allowance for ``from``'s tokens of at least `amount`."
 				}
 			},
 			"version": 1
@@ -845,19 +682,51 @@
 	},
 	"sources": {
 		".deps/contracts/IPFSStorage.sol": {
-			"keccak256": "0x2f8037209d63226b2d3bda264434eb577d8ec0612380199a7b3e4b487a30eb03",
+			"keccak256": "0x65ae03445eeda5f5e20252b7063d2c94bd7d4504abe95a422b0a6e5c82001f6e",
 			"license": "GPL-30",
 			"urls": [
-				"bzz-raw://1cdf94f5c4a3f1ede408b33179a63e45b2e994640514a579aa83434214cafb6a",
-				"dweb:/ipfs/QmTPFHPYSUR9Bzn8ZDAZVYsQbiVTnKNgZdMrWNp5TEyoku"
+				"bzz-raw://dd34d103fb17cafeb2f7390b585136ccc6686583898421ee1298a963660fd6bb",
+				"dweb:/ipfs/QmTCJejEJxX9V1PwxGBmRHf9RHJAtsS9J2TejYkPzC3rUP"
 			]
 		},
 		".deps/contracts/ajoulinka.sol": {
-			"keccak256": "0xf2c52612bdcfa1897c2d7272409e77042dbd3bc96c5133eac89883e1fbe2f394",
+			"keccak256": "0x5539998d5c951b250a88d097cc1ff1521980bb1cccc896f164c16a618bc35c51",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://94371283c4d1e7831175e11e73c271564f9a0042b238024557f801e810841ba7",
-				"dweb:/ipfs/QmZ1DkzF1UUCqMKSNPo9gkT8CccMLDkcKkCArNQwdTGrCo"
+				"bzz-raw://764d35342aecf9656d286b5db64a2e453303262b848309942bced5b3c155813b",
+				"dweb:/ipfs/QmQuLaeQwADvxnyMrxTPUgR8Q8E1SE6CFkxn5pURcTQ6Z3"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0xa56ca923f70c1748830700250b19c61b70db9a683516dc5e216694a50445d99c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cac938788bc4be12101e59d45588b4e059579f4e61062e1cda8d6b06c0191b15",
+				"dweb:/ipfs/QmV2JKCyjTVH3rkWNrfdJRhAT7tZ3usAN2XcnD4h53Mvih"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bd39944e8fc06be6dbe2dd1d8449b5336e23c6a7ba3e8e9ae5ae0f37f35283f5",
+				"dweb:/ipfs/QmPV3FGYjVwvKSgAXKUN3r9T9GwniZz83CxBpM7vyj2G53"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd",
+				"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
 		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
@@ -866,46 +735,6 @@
 			"urls": [
 				"bzz-raw://ef8e012e946dec20e59f2d4446f4b44bb098f3fa8bac103b1b5112fff777447b",
 				"dweb:/ipfs/QmVTooKWcLkJ9W68yNX4MgdrbAKiAXwuRN9A7f4NkdcdtQ"
-			]
-		},
-		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/interfaces/draft-IERC6093.sol": {
-			"keccak256": "0x5cf735f5eac2ea8469cdf266e51027bebb762eb33886f09157afc8902e177119",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b9d9420ab10ec9a2e42cb934cadfe506aa446e8dbc49fa89f1f70e1d1e926c5a",
-				"dweb:/ipfs/QmPKYUyeHpAN3YAkenrpSKnNZTaznS8gbkdAQqYZynCuwh"
-			]
-		},
-		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol": {
-			"keccak256": "0x2d0e76e01de5051685b7e7461b49cad00cbed1e742632392d39bc39fecf17df5",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://eff1c948870cab8ea83848a03de4c53fcc0b36342c73c16f6bbee6bd14ffa661",
-				"dweb:/ipfs/QmZTLUVM2LoCjM1ZpHndW5eGGiNYJvBempTe7FDrCFvrGu"
-			]
-		},
-		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x128678ee3c594161a26eae9b27d21b934e79556ce866306133c790c22d34f38c",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://10971d43d16db54afe5212a618c36569bd34e3e25a63be612cf13652f2424efa",
-				"dweb:/ipfs/QmcsbVy4JBiamLWLMDrijhSW7CAZtyfh38prNuMq6geVT9"
-			]
-		},
-		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
-			"keccak256": "0x11978b1a63c34da7be9478e3ef9b010c77e3a6a3907271a9fbcaecea5e690c7c",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://230dcb6f06c05bdd45777779db201a6bfdb491c0c78847c7200a54162f08f557",
-				"dweb:/ipfs/QmbsVtCMwG4cEupL38UyBcZXgJ7SipqYZMgrir96aXJm5S"
-			]
-		},
-		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol": {
-			"keccak256": "0xdbc33ea310e83250cca8ad26e935a8d50ea10e781ba64a31beb0ea2ec912c605",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://54cc15b73a5e92fd1ed78cb67504a534ab5879e11c0688ec10809128e1e00ac8",
-				"dweb:/ipfs/QmPRtXeXmMyYt8J8u57HV6GQjuSevjE8gk5tMeyqXdkAzu"
 			]
 		}
 	},
