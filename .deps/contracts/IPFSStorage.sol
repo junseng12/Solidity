@@ -1,6 +1,6 @@
 // SPDX-License-Identifier:GPL-30
 // 이더리움 메인 넷에 데이터의 IPFS 해시를 저장하는 컨트랙트
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
  /**
    * @title IPFSStorage

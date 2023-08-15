@@ -1,7 +1,8 @@
 // SPDX-License-Identifier:MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+//import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+import ".deps/npm/@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import  ".deps/contracts/IPFSStorage.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
@@ -17,7 +18,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 contract PompayToken is ERC20{
     uint public INITIAL_SUPPLY = 1500000000000000*10**18;
     constructor(string memory name, string memory symbol) ERC20(name,symbol){
-        _mint(address(this), INITIAL_SUPPLY);
+        _mint(msg.sender, INITIAL_SUPPLY);
     }
 }
 
@@ -31,7 +32,7 @@ contract status is PompayToken("AJOU", "AJ"){
      using SafeMath for uint256;
 
     constructor(address _tokenAddress) {
-        owner = address(this); // 컨트랙트 배포자를 소유자로 설정 -- address(this) 이 컨트랙트 자체에 토큰 minting을 하면 안되나?
+        owner = msg.sender; // 컨트랙트 배포자를 소유자로 설정 -- address(this) 이 컨트랙트 자체에 토큰 minting을 하면 transfer나 transferFrom에 오류
         token = ERC20(_tokenAddress); // ERC-20 토큰 컨트랙트 주소 설정
     }
     
@@ -73,7 +74,7 @@ contract status is PompayToken("AJOU", "AJ"){
 
         //지갑 소유자(to)의 balance 값 Update
         getInfoByWallet[to].balance = balanceOf(to);
-        //balance 값 Update 후, ipfs 상에서도 새로 Update
+        //balance 값 Update 후, ipfs 상에서도 새로 Update -- 임시로 닫음
         uploadStudentInfoToIPFS(to);
         return true;
     }
@@ -85,7 +86,7 @@ contract status is PompayToken("AJOU", "AJ"){
     //<--   IPFS 해시 저장 부분     -->//
     // IPFS 해시를 이더리움 블록체인에 저장하는 컨트랙트의 인스턴스 생성
     // IPFSStorage 컨트랙트 주소 : 0x16bBbD5bF6a7FDF52F896cC51162783e9e099179
-    IPFSStorage ipfsStorage = IPFSStorage(0x16bBbD5bF6a7FDF52F896cC51162783e9e099179);
+    IPFSStorage ipfsStorage = IPFSStorage(0x0fC5025C764cE34df352757e82f7B5c4Df39A836);
 
     // ipfsHash 값 어떻게 저장되는지 확인 못함
     //Student 정보를 해시하여 IPFS에 올리는 함수
@@ -98,8 +99,6 @@ contract status is PompayToken("AJOU", "AJ"){
         // getInfoByWallet[msg.sender].ipfsHash = ipfsHash;
     }
 
-    
- 
     //IPFS 해시 값으로 Student 정보를 가져와 balance값을 보여주는 함수
     function getBalanceOfStudent(address account /*string memory /*ipfsHash*/) public view returns (uint256) {
         // // IPFSStorage 컨트랙트의 인스턴스를 생성
@@ -166,9 +165,9 @@ contract status is PompayToken("AJOU", "AJ"){
         //다른 토큰을 스왑하는 과정에서 해당 토큰을 transferFrom 함수를 사용하여 스마트 컨트랙트로 전송하게 되면, 그 토큰은 스마트 컨트랙트의 소유가 됨
         //소유자의 지갑에서 해당 토큰이 빠져나온 것이 맞으며, 다른 기능을 수행하지 않으면 이 컨트랙트 내 예치됨 
         // 사용자의 토큰 소유자 계정에서 approve 함수를 호출하여 스마트 계약 주소에 대한 허용량 설정 필요
-        require(otherToken.approve(address(this), otherTokenAmount), "Approval failed");
+        require(otherToken.approve(getTokenContractOwner(), otherTokenAmount), "Approval failed");
          //해당 토큰을 transferFrom 함수를 사용하여 스마트 컨트랙트로 전송
-        require(otherToken.transferFrom(msg.sender, address(this), otherTokenAmount), "Token transfer failed");
+        require(otherToken.transferFrom(msg.sender, getTokenContractOwner(), otherTokenAmount), "Token transfer failed");
     
         uint256 pompayTokenAmount = calculatePompayTokenAmount(otherTokenAddress, otherTokenAmount, etherPrice, tokenPrice); // 별도의 함수를 통해 계산
         require(pompayTokenAmount > 0, "Insufficient amount");
@@ -176,7 +175,7 @@ contract status is PompayToken("AJOU", "AJ"){
         //Swap을 호출한 해당 사용자 계정에 PompayToken 발행
         _mint(msg.sender, pompayTokenAmount); 
     
-        emit TokensSwapped(msg.sender, otherTokenAddress, otherTokenAmount, address(this), pompayTokenAmount);
+        emit TokensSwapped(msg.sender, otherTokenAddress, otherTokenAmount, getTokenContractOwner(), pompayTokenAmount);
     }
 
 
