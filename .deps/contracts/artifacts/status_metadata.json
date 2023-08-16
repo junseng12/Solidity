@@ -47,43 +47,6 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "fromToken",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "fromAmount",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "toToken",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "toAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "TokensSwapped",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -205,74 +168,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_otherTokenAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_otherTokenAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "etherPrice",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "calculatePompayTokenAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "contract IERC20",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "etherPrice",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "calculateTokenValueInEther",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -464,62 +359,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "toTokenAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "ajouTokenAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "etherPrice",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "swapAJOUTokens",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "otherTokenAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "otherTokenAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "etherPrice",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "swapTokens",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "symbol",
 				"outputs": [
@@ -690,19 +529,19 @@
 			]
 		},
 		".deps/contracts/ajoulinka.sol": {
-			"keccak256": "0x5539998d5c951b250a88d097cc1ff1521980bb1cccc896f164c16a618bc35c51",
+			"keccak256": "0x8caef9c4c009ca47d18c0b8e7dc428b7edd8f825a4639f50e89e0769728757a9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://764d35342aecf9656d286b5db64a2e453303262b848309942bced5b3c155813b",
-				"dweb:/ipfs/QmQuLaeQwADvxnyMrxTPUgR8Q8E1SE6CFkxn5pURcTQ6Z3"
+				"bzz-raw://981dbc3b6e8f1936f2b2392cf2d1d9d4205aaf13b109ae0bfaf8947c4342eb14",
+				"dweb:/ipfs/QmR62wbF9vkex584579kHmBjG62mKQB9rN2U8acpzoSeoN"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-			"keccak256": "0xa56ca923f70c1748830700250b19c61b70db9a683516dc5e216694a50445d99c",
+			"keccak256": "0xc17460231f2cbbfde8b02ede7a9a146149ac1099ee2869acd8fa2d1e97ca0756",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cac938788bc4be12101e59d45588b4e059579f4e61062e1cda8d6b06c0191b15",
-				"dweb:/ipfs/QmV2JKCyjTVH3rkWNrfdJRhAT7tZ3usAN2XcnD4h53Mvih"
+				"bzz-raw://d1264e99b7d4e44da0110236c399ac8fa3c844ea2f9e043aef5260c2e415b8f3",
+				"dweb:/ipfs/QmW4p9PUXJWJo9gmpaRLZf4585dd7Rann4T8rmtHeAkQ15"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
