@@ -51,20 +51,79 @@ artifacts/                 # Auto-generated build outputs (JSON ABI etc.)
 
 ---
 
-## 🛠 How to Use (for Solidity part)
+## 🔧 How to Deploy (Using Remix)
 
-1. Install dependencies (if using Hardhat):
-   ```bash
-   npm install
-   ```
+This Solidity project was developed and tested using the [Remix IDE](https://remix.ethereum.org/).  
+Below are step-by-step instructions to deploy and interact with the contracts via Remix:
 
-2. Compile contracts:
-  ```bash
-  npx hardhat compile
-  ```
-3. (Optional) Deploy to local/testnet using scripts
+### 🖥️ Steps:
 
-The full project includes backend services that communicate with these contracts using Web3.js or Ethers.js.
+1. Go to 👉 [https://remix.ethereum.org/](https://remix.ethereum.org/)
+2. Click **"Upload Folder"** (top-left) and select the `contracts/` folder from this project.
+3. Deploy the contracts in the following order:
+
+markdown
+```
+1. IPFSStorage
+2. PompayToken       (from within ajoulinka.sol)
+3. status            (from within ajoulinka.sol)
+4. EtherSwap
+```
+
+---
+
+### ▶️ Deployment Instructions
+
+1. **Deploy `IPFSStorage` first**  
+   - Copy the deployed address.
+   - Open `ajoulinka.sol` and go to line 88:  
+     Replace:
+     ```solidity
+     IPFSStorage ipfsStorage = IPFSStorage(DeployedAddress);
+     ```
+     with your deployed address, e.g.:
+     ```solidity
+     IPFSStorage ipfsStorage = IPFSStorage(0x16bBbD5bF6a7FDF52F896cC51162783e9e099179);
+     ```
+
+2. **Deploy `PompayToken`**  
+   - Provide constructor arguments:  
+     ```
+     name: pompay
+     symbol: PMP
+     ```
+
+3. **Deploy `status` contract**  
+   - Provide the deployed address of `PompayToken` as a constructor argument, e.g.:
+     ```
+     0xd9145CCE52D386f254917e481eB44e9943F39138
+     ```
+
+4. **Deploy `EtherSwap`**  
+   - Provide the deployed address of `status` contract as constructor argument, e.g.:
+     ```
+     0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8
+     ```
+
+> 💡 **Tip:**  
+> For testing token swaps in `EtherSwap`, make sure to mint or fund both ETH and AJOU tokens beforehand.
+
+---
+
+## 📚 Learning Context
+
+This repository was created during the development of a collaborative university project.  
+My focus was on building decentralized contract logic and practicing Solidity through integration with:
+
+- Ethereum testnets
+- Token swap concepts
+- IPFS (InterPlanetary File System)
+
+---
+
+## License
+
+This project is for **educational and collaborative** use only as part of Ajou University's student program.
 
 ---
 
