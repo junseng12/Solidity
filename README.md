@@ -96,7 +96,7 @@ markdown
      symbol: PMP
      ```
      
-     ![image](https://github.com/user-attachments/assets/a51fe646-db34-4e10-9489-22166e498332)
+   ![image](https://github.com/user-attachments/assets/a51fe646-db34-4e10-9489-22166e498332)
 
 3. **Deploy `status` contract**
 
@@ -107,7 +107,7 @@ markdown
      ```
 
 5. **Deploy `EtherSwap`**
-6. 
+   
    ![image](https://github.com/user-attachments/assets/6f2ff4ea-95e6-4740-89d5-1f895791befc)
    - Provide the deployed address of `status` contract as constructor argument, e.g.:
      ```
