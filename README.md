@@ -95,16 +95,19 @@ markdown
      name: pompay
      symbol: PMP
      ```
+     
      ![image](https://github.com/user-attachments/assets/a51fe646-db34-4e10-9489-22166e498332)
 
 3. **Deploy `status` contract**
-    ![image](https://github.com/user-attachments/assets/ce9d7139-21d8-4c53-a6db-c640a6d7cebd)
+
+   ![image](https://github.com/user-attachments/assets/ce9d7139-21d8-4c53-a6db-c640a6d7cebd)
    - Provide the deployed address of `PompayToken` as a constructor argument, e.g.:
      ```
      0xd9145CCE52D386f254917e481eB44e9943F39138
      ```
 
 5. **Deploy `EtherSwap`**
+6. 
    ![image](https://github.com/user-attachments/assets/6f2ff4ea-95e6-4740-89d5-1f895791befc)
    - Provide the deployed address of `status` contract as constructor argument, e.g.:
      ```
