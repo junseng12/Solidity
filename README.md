@@ -60,6 +60,7 @@ Below are step-by-step instructions to deploy and interact with the contracts vi
 
 1. Go to 👉 [https://remix.ethereum.org/](https://remix.ethereum.org/)
 2. Click **"Upload Folder"** (top-left) and select the `contracts/` folder from this project.
+![image](https://github.com/user-attachments/assets/868c83fa-cbc6-4ffd-83b9-243c5331cd75)
 3. Deploy the contracts in the following order:
 
 markdown
@@ -82,6 +83,8 @@ markdown
      IPFSStorage ipfsStorage = IPFSStorage(DeployedAddress);
      ```
      with your deployed address, e.g.:
+     ![image](https://github.com/user-attachments/assets/67117aa8-8e38-492a-84a9-4fc6f38c49fc)
+
      ```solidity
      IPFSStorage ipfsStorage = IPFSStorage(0x16bBbD5bF6a7FDF52F896cC51162783e9e099179);
      ```
@@ -92,14 +95,17 @@ markdown
      name: pompay
      symbol: PMP
      ```
+     ![image](https://github.com/user-attachments/assets/a51fe646-db34-4e10-9489-22166e498332)
 
-3. **Deploy `status` contract**  
+3. **Deploy `status` contract**
+    ![image](https://github.com/user-attachments/assets/ce9d7139-21d8-4c53-a6db-c640a6d7cebd)
    - Provide the deployed address of `PompayToken` as a constructor argument, e.g.:
      ```
      0xd9145CCE52D386f254917e481eB44e9943F39138
      ```
 
-4. **Deploy `EtherSwap`**  
+5. **Deploy `EtherSwap`**
+   ![image](https://github.com/user-attachments/assets/6f2ff4ea-95e6-4740-89d5-1f895791befc)
    - Provide the deployed address of `status` contract as constructor argument, e.g.:
      ```
      0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8
